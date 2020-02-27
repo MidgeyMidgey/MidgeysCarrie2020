@@ -19,6 +19,18 @@ public class DriveSubsystem extends SubsystemBase {
 
   public static DifferentialDrive m_drive;
 
+  /*
+   * As of Feb 26:
+   *
+   * For Carrie:
+   * front left 1  front right 2
+   * back left  3  back right  4
+   *
+   * For Chassis:
+   * front left 4  front right 3
+   * back left  2  back right  1
+   */
+  
   private CANSparkMax frontLeftMotor = new CANSparkMax(1, MotorType.kBrushless);
   private CANSparkMax frontRightMotor = new CANSparkMax(2, MotorType.kBrushless);
   private CANSparkMax backLeftMotor = new CANSparkMax(3, MotorType.kBrushless);
@@ -34,7 +46,15 @@ public class DriveSubsystem extends SubsystemBase {
     frontRightMotor.setInverted(true);
     backLeftMotor.setInverted(false);
     backRightMotor.setInverted(true);
-    // ^ FIX: Making sure none of the motors are inverted, change when we figure out WTH is up with the motors lol
+    // ^ This for Chasis
+
+    /*
+    frontLeftMotor.setInverted(false);
+    frontRightMotor.setInverted(true);
+    backLeftMotor.setInverted(false);
+    backRightMotor.setInverted(true);
+    */
+    // ^ This for Carrie
 
     frontLeftMotor.setSmartCurrentLimit(80);
     frontRightMotor.setSmartCurrentLimit(80);

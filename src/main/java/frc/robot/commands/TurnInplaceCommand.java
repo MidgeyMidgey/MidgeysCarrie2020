@@ -21,8 +21,8 @@ public class TurnInplaceCommand extends CommandBase {
 
     @Override
     public void initialize() {
-	origin = m_driveSubsystem.getLeftEncoderDistance();
-	target = Math.signum(m_rotation) * m_speed + origin;
+	    origin = m_driveSubsystem.getLeftEncoderDistance();
+	    target = m_rotation + origin;
     }
 
     @Override
@@ -33,11 +33,13 @@ public class TurnInplaceCommand extends CommandBase {
     @Override
     public void end(boolean interrupted) {
       m_driveSubsystem.tankDrive(0.0, 0.0);
+      System.out.println(interrupted);
     }
 
     @Override
     public boolean isFinished() {
       double current = m_driveSubsystem.getLeftEncoderDistance();
+      System.out.format("%f %f %f", origin, current, target);
       if (m_rotation > 0) {
 	      return current >= target;
       } else {
