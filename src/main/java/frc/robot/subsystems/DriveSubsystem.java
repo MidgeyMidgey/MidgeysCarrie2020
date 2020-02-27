@@ -42,10 +42,10 @@ public class DriveSubsystem extends SubsystemBase {
   private CANEncoder m_backRightEncoder = new CANEncoder(backRightMotor);
 
   public DriveSubsystem() {
-    frontLeftMotor.setInverted(false);
-    frontRightMotor.setInverted(true);
-    backLeftMotor.setInverted(false);
-    backRightMotor.setInverted(true);
+    frontLeftMotor.setInverted(true);
+    frontRightMotor.setInverted(false);
+    backLeftMotor.setInverted(true);
+    backRightMotor.setInverted(false);
     // ^ This for Chasis
 
     /*
