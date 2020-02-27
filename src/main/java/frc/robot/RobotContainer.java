@@ -52,8 +52,8 @@ public class RobotContainer {
   private static final int RIGHT_BUMPER_XBOX = 6;
   private static final int BACK_ARROW = 7;
   private static final int START_ARROW = 8;
-  private static final int JOYSTICK_RIGHT_CLICK = 10;
   private static final int JOYSTICK_LEFT_CLICK = 9;
+  private static final int JOYSTICK_RIGHT_CLICK = 10;
 
   public RobotContainer() {
     configureButtonBindings();

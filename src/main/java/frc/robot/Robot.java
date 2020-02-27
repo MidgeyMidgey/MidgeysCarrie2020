@@ -19,7 +19,7 @@ import frc.robot.commands.DriveDistanceCommand;
 import frc.robot.commands.SequentialDriveExampleCommand;
 
 public class Robot extends TimedRobot {
-
+  private Command m_autoCommand;
   public RobotContainer m_robotContainer;
   double testVal = 5.7;
 
@@ -28,7 +28,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_robotContainer = new RobotContainer();
     SmartDashboard.putNumber("Auto mode", testVal);
-    
   }
 
   public Command getAutoCommand(){
@@ -78,7 +77,7 @@ public class Robot extends TimedRobot {
     //RobotContainer.m
     //RobotContainer.m_DriveExampleCommand = m_chooser.getSelected();
 
-    Command m_autoCommand = getAutoCommand();
+    m_autoCommand = getAutoCommand();
     System.out.println(m_autoCommand.toString());
     if(m_autoCommand != null){
       m_autoCommand.schedule();
@@ -93,16 +92,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    /*
-     if (m_autonomousCommand != null) {
-       m_autonomousCommand.cancel();
+     if (m_autoCommand != null) {
+       m_autoCommand.cancel();
      }
-    */
-    // ^ SUPER IMPORTANT!!! You HAVE to cancel Autonomous commands here cuz teleop won't go unless you do!
-    Command m_autoCommand = getAutoCommand();
-    if(m_autoCommand != null) {
-      m_autoCommand.cancel();
-    }
   }
 
   @Override
