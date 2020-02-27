@@ -35,7 +35,6 @@ import frc.robot.subsystems.LimelightSubsystem;
 public class RobotContainer {
   public static XboxController driverXBox = new XboxController(1);
   public static XboxController manipulatorXBox = new XboxController(2);
-  // ^ FIX: Check to make sure manipulatorXBox is on the right port
 
   public static LimelightSubsystem m_limelight = new LimelightSubsystem();
   public final static DriveSubsystem m_robotDrive = new DriveSubsystem();
@@ -84,14 +83,13 @@ public class RobotContainer {
     
     JoystickButton sequentialDriveCommandButton = new JoystickButton(driverXBox, B_BUTTON_XBOX);
     sequentialDriveCommandButton.whenPressed(new SequentialDriveExampleCommand(m_robotDrive, m_limelight));
-  /*
-
+  
     JoystickButton flywheelStarButton = new JoystickButton(driverXBox, B_BUTTON_XBOX);
     flywheelStarButton.toggleWhenPressed(new FlywheelStartCommand(m_ballSubsystem));
 
     JoystickButton oneIndexBallCommandButton = new JoystickButton(driverXBox, A_BUTTON_XBOX);
     oneIndexBallCommandButton.whileHeld(new OneIndexBallCommand(m_ballSubsystem));
-*/
+
     JoystickButton BeltOnlyTesterCommandButton = new JoystickButton(manipulatorXBox, X_BUTTON_XBOX);
     BeltOnlyTesterCommandButton.whileHeld(new BeltOnlyTesterCommand(m_ballSubsystem));
 

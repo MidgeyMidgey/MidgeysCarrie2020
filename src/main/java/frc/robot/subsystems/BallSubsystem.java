@@ -31,11 +31,11 @@ public class BallSubsystem extends SubsystemBase {
 
   public DigitalInput ballIntakeSensor = new DigitalInput(0);
   public DigitalInput indexSensor = new DigitalInput(1);
-/*
+
   public BallSubsystem() {
     flywheelEncoder.reset();
   }
-*/
+
   public void setBallCollectSpeed(double speed){
     ballCollect.set(ControlMode.PercentOutput, speed);
   }
@@ -44,7 +44,7 @@ public class BallSubsystem extends SubsystemBase {
     ballBeltOne.set(ControlMode.PercentOutput, speed);
     ballBeltTwo.set(ControlMode.PercentOutput, speed);
   }
-/*
+
   public void setFlywheelSpeed(double speed){
     flyWheel.set(ControlMode.PercentOutput, speed);
   }
@@ -52,7 +52,7 @@ public class BallSubsystem extends SubsystemBase {
   public void setIndexSpeed(double speed){
     index.set(ControlMode.PercentOutput, speed);
   }
-*/
+
   public boolean intakeHasBall(){
     return !ballIntakeSensor.get();
   }

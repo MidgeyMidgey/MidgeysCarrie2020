@@ -8,21 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
-import frc.robot.subsystems.BallSubsystem;
 
-public class OneIndexBallCommand extends CommandBase {
-
-  private BallSubsystem m_ballSubsystem;
-
-  public OneIndexBallCommand(BallSubsystem ballSubsystem) {
-    m_ballSubsystem = ballSubsystem;
+public class ShooterSequentialCommand extends CommandBase {
+  /**
+   * Creates a new ShooterSequentialCommand.
+   */
+  public ShooterSequentialCommand() {
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_ballSubsystem.setIndexSpeed(Constants.BALL_INDEX_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,7 +30,6 @@ public class OneIndexBallCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_ballSubsystem.setIndexSpeed(0.0);
   }
 
   // Returns true when the command should end.
@@ -42,4 +38,3 @@ public class OneIndexBallCommand extends CommandBase {
     return false;
   }
 }
-

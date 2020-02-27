@@ -21,7 +21,7 @@ import frc.robot.commands.SequentialDriveExampleCommand;
 public class Robot extends TimedRobot {
   private Command m_autoCommand;
   public RobotContainer m_robotContainer;
-  double testVal = 5.7;
+  double testVal = 1.0;
 
 
   @Override
@@ -46,10 +46,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Limelight ty", RobotContainer.m_limelight.getY());
     SmartDashboard.putNumber("Limelight ta", RobotContainer.m_limelight.getArea());
     
-/*
     SmartDashboard.putNumber("Flywheel Revolutions per min", (RobotContainer.m_ballSubsystem.flywheelEncoder.getRate()/2048)*60);
     SmartDashboard.putNumber("Flywheel distance", RobotContainer.m_ballSubsystem.flywheelEncoder.getDistance());
-*/
+
     SmartDashboard.putBoolean("Intake got ball", RobotContainer.m_ballSubsystem.intakeHasBall());
   }
 
@@ -65,18 +64,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    /*
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
-     schedule the autonomous command (example)
-     if (m_autonomousCommand != null) {
-       m_autonomousCommand.schedule();
-    }
-    */
-    // ^ This code could come in handy for Autonomous stuff!
-    //RobotContainer.m
-    //RobotContainer.m_DriveExampleCommand = m_chooser.getSelected();
-
     m_autoCommand = getAutoCommand();
     System.out.println(m_autoCommand.toString());
     if(m_autoCommand != null){

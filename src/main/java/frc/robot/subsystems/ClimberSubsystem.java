@@ -24,4 +24,9 @@ public class ClimberSubsystem extends SubsystemBase {
   public void periodic() {
 
   }
+
+  public void setClimberSpeeds(){
+    climberRight.set(ControlMode.PercentOutput, speed);
+    climberLeft.set(ControlMode.PercentOutput, speed);
+  }
 }
