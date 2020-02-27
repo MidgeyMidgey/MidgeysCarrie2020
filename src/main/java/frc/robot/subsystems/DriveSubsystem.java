@@ -35,6 +35,15 @@ public class DriveSubsystem extends SubsystemBase {
     backLeftMotor.setInverted(false);
     backRightMotor.setInverted(true);
     // ^ FIX: Making sure none of the motors are inverted, change when we figure out WTH is up with the motors lol
+    // ^ This for Chasis
+
+    /*
+    frontLeftMotor.setInverted(false);
+    frontRightMotor.setInverted(true);
+    backLeftMotor.setInverted(false);
+    backRightMotor.setInverted(true);
+    */
+    // ^ For Carrie
 
     frontLeftMotor.setSmartCurrentLimit(80);
     frontRightMotor.setSmartCurrentLimit(80);
