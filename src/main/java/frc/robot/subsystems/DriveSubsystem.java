@@ -44,19 +44,24 @@ public class DriveSubsystem extends SubsystemBase {
   private CANEncoder m_backRightEncoder = new CANEncoder(backRightMotor);
 
   public DriveSubsystem() {
-    frontLeftMotor.setInverted(true);
-    frontRightMotor.setInverted(false);
-    backLeftMotor.setInverted(true);
-    backRightMotor.setInverted(false);
-    // ^ This for Chasis
 
-    /*
-    frontLeftMotor.setInverted(false);
-    frontRightMotor.setInverted(true);
-    backLeftMotor.setInverted(false);
-    backRightMotor.setInverted(true);
-    */
-    // ^ This for Carrie
+    boolean isCarrie = true;
+    double encoderPCF;
+    if (!isCarrie) {  
+      frontLeftMotor.setInverted(true);
+      frontRightMotor.setInverted(false);
+      backLeftMotor.setInverted(true);
+      backRightMotor.setInverted(false);
+      encoderPCF = 1.77;
+      // ^ This for Chasis
+    } else {
+      frontLeftMotor.setInverted(false);
+      frontRightMotor.setInverted(true);
+      backLeftMotor.setInverted(false);
+      backRightMotor.setInverted(true);
+      encoderPCF = 1.77; // needs tuning for Carrie
+      // ^ This for Carrie
+    }
 
     frontLeftMotor.setSmartCurrentLimit(80);
     frontRightMotor.setSmartCurrentLimit(80);
@@ -67,15 +72,14 @@ public class DriveSubsystem extends SubsystemBase {
     backRightMotor.follow(frontRightMotor);
 
     // ???? Configure encoders here
-    m_frontLeftEncoder.setPositionConversionFactor(1.77);
-    m_frontRightEncoder.setPositionConversionFactor(1.77);
-    m_backLeftEncoder.setPositionConversionFactor(1.77);
-    m_backRightEncoder.setPositionConversionFactor(1.77);
+    m_frontLeftEncoder.setPositionConversionFactor(encoderPCF);
+    m_frontRightEncoder.setPositionConversionFactor(encoderPCF);
+    m_backLeftEncoder.setPositionConversionFactor(encoderPCF);
+    m_backRightEncoder.setPositionConversionFactor(encoderPCF);
 
     this.resetEncoders();
     
     m_drive = new DifferentialDrive(frontLeftMotor, frontRightMotor);
-
     m_drive.setRightSideInverted(false);
     m_drive.setMaxOutput(Constants.k);
   }
