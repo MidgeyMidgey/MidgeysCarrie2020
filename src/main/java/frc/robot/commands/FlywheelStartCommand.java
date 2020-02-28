@@ -38,7 +38,6 @@ public class FlywheelStartCommand extends CommandBase {
 
   @Override
   public boolean isFinished() {
-
     return false;
   }
 }
