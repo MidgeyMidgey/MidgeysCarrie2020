@@ -9,6 +9,9 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 public class ClimberSubsystem extends SubsystemBase {
@@ -25,7 +28,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
   }
 
-  public void setClimberSpeeds(){
+  public void setClimberSpeeds(double speed){
     climberRight.set(ControlMode.PercentOutput, speed);
     climberLeft.set(ControlMode.PercentOutput, speed);
   }
