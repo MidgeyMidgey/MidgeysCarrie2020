@@ -19,18 +19,25 @@ import frc.robot.commands.AutoBaselineCommand;
 import frc.robot.commands.AutoWallRightCommand;
 import frc.robot.commands.DriveDistanceCommand;
 import frc.robot.commands.SequentialDriveExampleCommand;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 
 public class Robot extends TimedRobot {
   private Command m_autoCommand;
   public RobotContainer m_robotContainer;
+  public UsbCamera m_frontCamera;
+
   double autoVar = 0.0;
   public static double flyWheelRPM;
-
 
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
     SmartDashboard.putNumber("Auto mode", autoVar);
+
+    m_frontCamera = CameraServer.getInstance().startAutomaticCapture("front camera", 0);
+    m_frontCamera.setBrightness(1);
+    m_frontCamera.setResolution(Constants.CAMERA_IMG_WIDTH, Constants.CAMERA_IMG_HEIGHT);
   }
 
   public Command getAutoCommand(){
