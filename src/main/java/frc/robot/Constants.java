@@ -19,4 +19,6 @@ public final class Constants {
     public static final double INDEX_ONE_BALL_TIME = 0.30;
     public static final double AUTO_INIT_FORWARD_DISTANCE = 39;
     public static final double AUTO_INIT_FORWARD_SPEED = 0.4;
+    public static final int CAMERA_IMG_WIDTH = 320;
+    public static final int CAMERA_IMG_HEIGHT = 240;
 }
