@@ -7,19 +7,29 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
-public class ShooterSequentialCommand extends CommandBase {
+//import com.ctre.phoenix.motorcontrol.ControlMode;
+
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
+import frc.robot.subsystems.BallSubsystem;
+
+public class BallBeltEncoderCommand extends CommandBase {
   /**
-   * Creates a new ShooterSequentialCommand.
+   * Creates a new BallBeltEncoderCommand.
    */
-  public ShooterSequentialCommand() {
+  public BallSubsystem m_ballSubsystem;
+  public BallBeltEncoderCommand(BallSubsystem ballSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
+    m_ballSubsystem = ballSubsystem;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.m_ballSubsystem.ballBelt.set(ControlMode.PercentOutput, Constants.BELT_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,11 +40,13 @@ public class ShooterSequentialCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    RobotContainer.m_ballSubsystem.ballBelt.set(ControlMode.PercentOutput, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return Math.abs(RobotContainer.m_ballSubsystem.ballBeltEncoder.get()) >= 5;
+    //return false;
   }
 }

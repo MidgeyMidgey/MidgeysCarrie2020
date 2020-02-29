@@ -14,23 +14,35 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotContainer;
 
 public class BallSubsystem extends SubsystemBase {
   public VictorSPX ballCollect = new VictorSPX(5);
 
-  public VictorSPX ballBeltOne = new VictorSPX(6);
-  public VictorSPX ballBeltTwo = new VictorSPX(7);
+  public VictorSPX ballBelt = new VictorSPX(6);
 
-  public VictorSPX index = new VictorSPX(8);
-  public VictorSPX flyWheel = new VictorSPX(9);
+  public VictorSPX index = new VictorSPX(7);
+  public VictorSPX flyWheel = new VictorSPX(8);
 
-  //public DigitalInput flywheelA = new DigitalInput(0);
-  //public DigitalInput flywheelB = new DigitalInput(1);
+  public DigitalInput flywheelA = new DigitalInput(0);
+  public DigitalInput flywheelB = new DigitalInput(1);
 
-  //public Encoder flywheelEncoder = new Encoder(flywheelA, flywheelB);
+  public Encoder flywheelEncoder = new Encoder(flywheelA, flywheelB);
 
-  public DigitalInput ballIntakeSensor = new DigitalInput(0);
-  public DigitalInput indexSensor = new DigitalInput(1);
+  public DigitalInput ballIntakeSensor = new DigitalInput(9);
+  public DigitalInput indexSensor = new DigitalInput(7);
+
+  public DigitalInput ballBeltA = new DigitalInput(4);
+  public DigitalInput ballBeltB = new DigitalInput(5);
+
+  public Encoder ballBeltEncoder = new Encoder(ballBeltA, ballBeltB);
+
+  public DigitalInput indexA = new DigitalInput(2);
+  public DigitalInput indexB = new DigitalInput(3);
+
+  public Encoder indexEncoder = new Encoder(indexA, indexB);
+  
+  public static int powerCellsHeld = 3;
 
   public BallSubsystem() {
     flywheelEncoder.reset();
@@ -41,8 +53,7 @@ public class BallSubsystem extends SubsystemBase {
   }
 
   public void setBallBeltSpeeds(double speed){
-    ballBeltOne.set(ControlMode.PercentOutput, speed);
-    ballBeltTwo.set(ControlMode.PercentOutput, speed);
+    ballBelt.set(ControlMode.PercentOutput, speed);
   }
 
   public void setFlywheelSpeed(double speed){
@@ -53,7 +64,18 @@ public class BallSubsystem extends SubsystemBase {
     index.set(ControlMode.PercentOutput, speed);
   }
 
+  public void indexOneBallMovement(double speed){
+    double initial = indexEncoder.get();
+    double target = initial + 1024; // half rotation; move to constants
+    while(indexEncoder.get()<target){
+      index.set(ControlMode.PercentOutput, speed);
+    }
+  }
+
   public boolean intakeHasBall(){
+    if(!indexSensor.get()){
+      powerCellsHeld++;
+    }
     return !ballIntakeSensor.get();
   }
 

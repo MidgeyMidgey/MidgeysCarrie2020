@@ -21,7 +21,7 @@ public class ClimberCommand extends CommandBase {
 
   @Override
   public void initialize() {
-    m_climberSubsystem.setClimberSpeeds(.25);
+    m_climberSubsystem.setClimberSpeeds(Constants.CLIMBER_SPEED);
   }
 
   @Override
