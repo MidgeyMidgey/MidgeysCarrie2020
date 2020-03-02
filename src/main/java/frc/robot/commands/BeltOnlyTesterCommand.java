@@ -24,7 +24,7 @@ public class BeltOnlyTesterCommand extends CommandBase {
   public void initialize() {
     m_ballSubsystem.setBallBeltSpeeds(Constants.BELT_SPEED);
   }
-
+                                                                                                            
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {

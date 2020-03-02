@@ -30,7 +30,7 @@ public class BallSubsystem extends SubsystemBase {
   public Encoder flywheelEncoder = new Encoder(flywheelA, flywheelB);
 
   public DigitalInput ballIntakeSensor = new DigitalInput(9);
-  public DigitalInput indexSensor = new DigitalInput(7);
+  public DigitalInput indexSensor = new DigitalInput(6);
 
   public DigitalInput ballBeltA = new DigitalInput(4);
   public DigitalInput ballBeltB = new DigitalInput(5);
@@ -42,7 +42,7 @@ public class BallSubsystem extends SubsystemBase {
 
   public Encoder indexEncoder = new Encoder(indexA, indexB);
   
-  public static int powerCellsHeld = 3;
+  //public static int powerCellsHeld = 3;
 
   public BallSubsystem() {
     flywheelEncoder.reset();
@@ -50,6 +50,18 @@ public class BallSubsystem extends SubsystemBase {
 
   public void setBallCollectSpeed(double speed){
     ballCollect.set(ControlMode.PercentOutput, speed);
+  }
+
+  public int getBallBeltEncoder(){
+    return ballBeltEncoder.get();
+  }
+
+  public boolean intakeON(){
+    if(ballCollect.getMotorOutputPercent() > 0){
+      return true;
+    } else{
+      return false;
+    }
   }
 
   public void setBallBeltSpeeds(double speed){
@@ -73,9 +85,6 @@ public class BallSubsystem extends SubsystemBase {
   }
 
   public boolean intakeHasBall(){
-    if(!indexSensor.get()){
-      powerCellsHeld++;
-    }
     return !ballIntakeSensor.get();
   }
 

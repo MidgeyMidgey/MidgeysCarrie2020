@@ -45,9 +45,9 @@ public class DriveDistanceCommand extends CommandBase {
     public boolean isFinished() {
       double current = m_driveSubsystem.getLeftEncoderDistance();
       if (m_speed > 0) {
-	  return current >= target;
+	      return current >= target;
       } else {
-	  return current <= target;
+	      return current <= target;
       }
     }
 }

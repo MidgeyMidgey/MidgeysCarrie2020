@@ -31,7 +31,7 @@ import frc.robot.commands.FlywheelStartCommand;
 import frc.robot.commands.IRSensorCommand;
 import frc.robot.commands.TurnInplaceCommand;
 import frc.robot.commands.SequentialDriveExampleCommand;
-import frc.robot.commands.TeleShootCommand;
+import frc.robot.commands.ThrowUpCommand;
 import frc.robot.subsystems.BallSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
@@ -43,7 +43,7 @@ public class RobotContainer {
   public final static DriveSubsystem m_robotDrive = new DriveSubsystem();
   public static BallSubsystem m_ballSubsystem = new BallSubsystem();
   // ^ This is where we make our subsystems into instances!
-
+  public static AutoBeltCommand m_autoBeltCommand = new AutoBeltCommand(m_ballSubsystem);
   public static SequentialDriveExampleCommand m_DriveExampleCommand = new SequentialDriveExampleCommand(m_robotDrive, m_limelight);
 
   private static final int A_BUTTON_XBOX = 1;
@@ -75,31 +75,39 @@ public class RobotContainer {
     JoystickButton ballEjectCommandButton = new JoystickButton(driverXBox, RIGHT_BUMPER_XBOX);
     ballEjectCommandButton.toggleWhenPressed(new BallEjectCommand(m_ballSubsystem));
 
-    JoystickButton autoTrackButton = new JoystickButton(manipulatorXBox, B_BUTTON_XBOX);
-    autoTrackButton.whileHeld(new LimelightDistanceCommand(m_limelight, m_robotDrive));
+    JoystickButton autoDistanceButton = new JoystickButton(driverXBox, X_BUTTON_XBOX);
+    autoDistanceButton.whileHeld(new LimelightDistanceCommand(m_limelight, m_robotDrive));
 
+    JoystickButton limelightTurn = new JoystickButton(driverXBox, A_BUTTON_XBOX);
+    limelightTurn.whileHeld(new LimelightAutoTrackCommand());
 /*
-    JoystickButton driveDistanceCommandButton = new JoystickButton(driverXBox, X_BUTTON_XBOX);
+    Joystic\
+    kButton driveDistanceCommandButton = new JoystickButton(driverXBox, X_BUTTON_XBOX);
     driveDistanceCommandButton.whenPressed(new DriveDistanceCommand(60, 1, m_robotDrive));
 */
-    // JoystickButton turnInplaceCommandButton = new JoystickButton(driverXBox, Y_BUTTON_XBOX);
-    // turnInplaceCommandButton.whenPressed(new TurnInplaceCommand(45, .25, m_robotDrive));
+    //JoystickButton turnInplaceCommandButton = new JoystickButton(driverXBox, Y_BUTTON_XBOX);
+    //turnInplaceCommandButton.whenPressed(new TurnInplaceCommand(45, .25, m_robotDrive));
   
-    JoystickButton flywheelStarButton = new JoystickButton(driverXBox, B_BUTTON_XBOX);
+    JoystickButton flywheelStarButton = new JoystickButton(manipulatorXBox, X_BUTTON_XBOX);
     flywheelStarButton.toggleWhenPressed(new FlywheelStartCommand(m_ballSubsystem));
 
-    JoystickButton oneIndexBallCommandButton = new JoystickButton(driverXBox, A_BUTTON_XBOX);
+    JoystickButton oneIndexBallCommandButton = new JoystickButton(manipulatorXBox, A_BUTTON_XBOX);
     oneIndexBallCommandButton.whileHeld(new OneIndexBallCommand(m_ballSubsystem));
 
-    JoystickButton BeltOnlyTesterCommandButton = new JoystickButton(manipulatorXBox, X_BUTTON_XBOX);
-    BeltOnlyTesterCommandButton.whenPressed(new BeltOnlyTesterCommand(m_ballSubsystem));
+    //JoystickButton BeltOnlyTesterCommandButton = new JoystickButton(manipulatorXBox, X_BUTTON_XBOX);
+    //BeltOnlyTesterCommandButton.whenPressed(new (m_ballSubsystem));
 
-    JoystickButton IRSystemButton = new JoystickButton(driverXBox, X_BUTTON_XBOX);
-    IRSystemButton.whileHeld(new AutoBeltCommand(m_ballSubsystem));
+    JoystickButton IRSystemButton = new JoystickButton(manipulatorXBox, RIGHT_BUMPER_XBOX);
+    IRSystemButton.whenPressed(new AutoBeltCommand(m_ballSubsystem));
+ 
+    JoystickButton BeltTesterButton = new JoystickButton(manipulatorXBox, LEFT_BUMPER_XBOX);
+    BeltTesterButton.whileHeld(new BeltOnlyTesterCommand(m_ballSubsystem));
 
-    JoystickButton ShootAllBalls = new JoystickButton(driverXBox, Y_BUTTON_XBOX);
-    ShootAllBalls.whenPressed(new TeleShootCommand(m_ballSubsystem));
+    //JoystickButton ShootAllBalls = new JoystickButton(driverXBox, Y_BUTTON_XBOX);
+    //ShootAllBalls.whenPressed(new TeleShootCommand(m_ballSubsystem));
     
+    JoystickButton ThrowUpButton = new JoystickButton(manipulatorXBox, START_ARROW);
+    ThrowUpButton.whileHeld(new ThrowUpCommand(m_ballSubsystem));
 
   }
 }

@@ -8,21 +8,23 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.BallSubsystem;
 import frc.robot.Constants;
+import frc.robot.subsystems.BallSubsystem;
 
-public class BallIntakeCommand extends CommandBase {
+public class ThrowUpCommand extends CommandBase {
   
   private BallSubsystem m_ballSubsystem;
 
-  public BallIntakeCommand(BallSubsystem ballSubsystem) {
+  public ThrowUpCommand (BallSubsystem ballSubsystem) {
     m_ballSubsystem = ballSubsystem;
+    addRequirements(m_ballSubsystem); 
   }
 
   @Override
   public void initialize() {
-    m_ballSubsystem.setBallCollectSpeed(Constants.BALL_SYSTEM_SPEED);
-    
+    m_ballSubsystem.setBallBeltSpeeds(Constants.BALL_THROW_UP_SPEED);
+    //m_ballSubsystem.setIndexSpeed(Constants.BALL_THROW_UP_SPEED);
+    m_ballSubsystem.setBallCollectSpeed(Constants.BALL_THROW_UP_SPEED);
   }
 
   @Override
@@ -32,6 +34,8 @@ public class BallIntakeCommand extends CommandBase {
 
   @Override
   public void end(boolean interrupted) {
+    m_ballSubsystem.setBallBeltSpeeds(0.0);
+    //m_ballSubsystem.setIndexSpeed(0.0);
     m_ballSubsystem.setBallCollectSpeed(0.0);
   }
 

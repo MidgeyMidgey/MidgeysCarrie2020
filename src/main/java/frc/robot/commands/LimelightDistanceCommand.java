@@ -18,7 +18,7 @@ import frc.robot.subsystems.LimelightSubsystem;
 
 public class LimelightDistanceCommand extends CommandBase {
   
-  private static final double TARGET_AREA = 1.89;
+  private static final double TARGET_AREA = 1.481;
   private static final double MAX_AREA_ABS_ERROR = 0.005;
 
   private DriveSubsystem m_robotDrive;

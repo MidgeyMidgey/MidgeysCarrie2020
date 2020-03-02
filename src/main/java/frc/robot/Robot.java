@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.AutoBaselineCommand;
-import frc.robot.commands.AutoWallRightCommand;
 import frc.robot.commands.DriveDistanceCommand;
 import frc.robot.commands.SequentialDriveExampleCommand;
 import edu.wpi.cscore.UsbCamera;
@@ -41,10 +40,7 @@ public class Robot extends TimedRobot {
   }
 
   public Command getAutoCommand(){
-    if (SmartDashboard.getNumber("Auto mode", autoVar) == 1.0){
-      return new AutoWallRightCommand(m_robotContainer.m_robotDrive);
-    }
-    return new AutoBaselineCommand(m_robotContainer.m_robotDrive, m_robotContainer.m_limelight);
+    return new AutoBaselineCommand(m_robotContainer.m_robotDrive, m_robotContainer.m_limelight, m_robotContainer.m_ballSubsystem);
   }
 
   @Override
@@ -59,9 +55,15 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("Limelight ta", RobotContainer.m_limelight.getArea());
     
     SmartDashboard.putNumber("Flywheel Revolutions per min", (flyWheelRPM));
-    SmartDashboard.putNumber("Flywheel distance", RobotContainer.m_ballSubsystem.flywheelEncoder.getDistance());
+    //SmartDashboard.putNumber("Flywheel distance", RobotContainer.m_ballSubsystem.flywheelEncoder.getDistance());
+
+    SmartDashboard.putBoolean("Intake On", RobotContainer.m_ballSubsystem.intakeON());
 
     SmartDashboard.putBoolean("Intake got ball", RobotContainer.m_ballSubsystem.intakeHasBall());
+    SmartDashboard.putBoolean("Index got ball", RobotContainer.m_ballSubsystem.indexHasBall());
+
+    SmartDashboard.putNumber("Belt Encoder", RobotContainer.m_ballSubsystem.getBallBeltEncoder());
+   
   }
 
   @Override
