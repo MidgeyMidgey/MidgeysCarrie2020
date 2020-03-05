@@ -38,7 +38,6 @@ public class ClimberCommand extends CommandBase {
   
   @Override
   public boolean isFinished() {
-
     return false;
   }
 }

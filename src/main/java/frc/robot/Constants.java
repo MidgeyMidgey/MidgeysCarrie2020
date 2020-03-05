@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
- 
+
 public final class Constants {
     public static double k = .95;
     public static final double K_TURN = 0.25;
@@ -23,4 +23,5 @@ public final class Constants {
     public static final int CAMERA_IMG_WIDTH = 320;
     public static final int CAMERA_IMG_HEIGHT = 240;
     public static final double BALL_THROW_UP_SPEED = -0.50;
+    public static final double AUTO_BELT_SPEED = 0.25;
 }

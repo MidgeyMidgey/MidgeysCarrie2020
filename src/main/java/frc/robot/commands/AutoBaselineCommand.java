@@ -21,7 +21,7 @@ public class AutoBaselineCommand extends SequentialCommandGroup {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drive);
     addCommands(
-      new DriveDistanceCommand(36, -0.4, drive),
+      new DriveDistanceCommand(36, -0.75, drive),
       new LimelightDistanceCommand(limelight, drive),
       new MidgeShootBall(ballSubsystem, limelight)
     );
