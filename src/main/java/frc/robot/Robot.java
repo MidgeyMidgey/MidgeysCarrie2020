@@ -32,8 +32,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
-    SmartDashboard.putNumber("Auto mode", autoVar);
-
     m_frontCamera = CameraServer.getInstance().startAutomaticCapture("front camera", 0);
     m_frontCamera.setBrightness(1);
     m_frontCamera.setResolution(Constants.CAMERA_IMG_WIDTH, Constants.CAMERA_IMG_HEIGHT);
@@ -50,11 +48,11 @@ public class Robot extends TimedRobot {
     flyWheelRPM = (RobotContainer.m_ballSubsystem.flywheelEncoder.getRate()/2048)*60;
 
     SmartDashboard.putBoolean("limelight has target", RobotContainer.m_limelight.hasTarget());
-    SmartDashboard.putNumber("Limelight tx", RobotContainer.m_limelight.getX());
-    SmartDashboard.putNumber("Limelight ty", RobotContainer.m_limelight.getY());
-    SmartDashboard.putNumber("Limelight ta", RobotContainer.m_limelight.getArea());
+    //SmartDashboard.putNumber("Limelight tx", RobotContainer.m_limelight.getX());
+    //SmartDashboard.putNumber("Limelight ty", RobotContainer.m_limelight.getY());
+    //SmartDashboard.putNumber("Limelight ta", RobotContainer.m_limelight.getArea());
     
-    SmartDashboard.putNumber("Flywheel Revolutions per min", (flyWheelRPM));
+    //SmartDashboard.putNumber("Flywheel Revolutions per min", (flyWheelRPM));
     //SmartDashboard.putNumber("Flywheel distance", RobotContainer.m_ballSubsystem.flywheelEncoder.getDistance());
 
     SmartDashboard.putBoolean("Intake On", RobotContainer.m_ballSubsystem.intakeON());
@@ -63,7 +61,8 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Index got ball", RobotContainer.m_ballSubsystem.indexHasBall());
 
     SmartDashboard.putNumber("Belt Encoder", RobotContainer.m_ballSubsystem.getBallBeltEncoder());
-   
+
+    SmartDashboard.putBoolean("Flywheel up to speed", RobotContainer.m_ballSubsystem.flywheelUpToSpeed()); 
   }
 
   @Override
