@@ -34,8 +34,7 @@ public class MidgeShootBall extends CommandBase {
   @Override
   public void execute() {
     m_ballSubsystem.setFlywheelSpeed(0.25);
-    boolean flywheelAtSpeed = (m_ballSubsystem.flywheelEncoder.getRate()/2048)*60 > 1;
-    //6500;
+    boolean flywheelAtSpeed = (m_ballSubsystem.flywheelEncoder.getRate()/2048)*60 > 6500;
     boolean limelightHasTarget = m_limelightSubsystem.hasTarget();
     if (flywheelAtSpeed && limelightHasTarget) {
       m_ballSubsystem.setBallBeltSpeeds(.15);

@@ -24,4 +24,7 @@ public final class Constants {
     public static final int CAMERA_IMG_HEIGHT = 240;
     public static final double BALL_THROW_UP_SPEED = -0.50;
     public static final double AUTO_BELT_SPEED = 0.25;
+    public static final double CLIMBER_HOOK_SPEED = 0.3;
+    public static final double CLIMBER_WINCH_SPEED = 0.3;
+
 }
