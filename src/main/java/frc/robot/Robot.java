@@ -18,6 +18,9 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.commands.AutoBaselineCommand;
 import frc.robot.commands.DriveDistanceCommand;
 import frc.robot.commands.SequentialDriveExampleCommand;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 
@@ -52,7 +55,7 @@ public class Robot extends TimedRobot {
     //SmartDashboard.putNumber("Limelight ty", RobotContainer.m_limelight.getY());
     //SmartDashboard.putNumber("Limelight ta", RobotContainer.m_limelight.getArea());
     
-    //SmartDashboard.putNumber("Flywheel Revolutions per min", (flyWheelRPM));
+    SmartDashboard.putNumber("Flywheel Revolutions per min", (flyWheelRPM));
     //SmartDashboard.putNumber("Flywheel distance", RobotContainer.m_ballSubsystem.flywheelEncoder.getDistance());
 
     SmartDashboard.putBoolean("Intake On", RobotContainer.m_ballSubsystem.intakeON());
@@ -99,7 +102,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-
   }
 
   @Override

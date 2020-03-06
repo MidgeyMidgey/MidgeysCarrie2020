@@ -18,11 +18,13 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.commands.AutoBeltCommand;
+import frc.robot.commands.BallBeltEncoderCommand;
 import frc.robot.commands.BallEjectCommand;
 import frc.robot.commands.BallIntakeCommand;
 import frc.robot.commands.BeltOnlyTesterCommand;
 import frc.robot.commands.LimelightAutoTrackCommand;
 import frc.robot.commands.LimelightDistanceCommand;
+import frc.robot.commands.OneBallBeltCommand;
 import frc.robot.commands.OneIndexBallCommand;
 //import frc.robot.commands.OneIndexBallCommand;
 import frc.robot.commands.DriveDistanceCommand;
@@ -33,6 +35,7 @@ import frc.robot.commands.TurnInplaceCommand;
 import frc.robot.commands.SequentialDriveExampleCommand;
 import frc.robot.commands.ThrowUpCommand;
 import frc.robot.subsystems.BallSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 
@@ -42,6 +45,7 @@ public class RobotContainer {
   public static LimelightSubsystem m_limelight = new LimelightSubsystem();
   public final static DriveSubsystem m_robotDrive = new DriveSubsystem();
   public static BallSubsystem m_ballSubsystem = new BallSubsystem();
+  public static ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
   // ^ This is where we make our subsystems into instances!
   public static AutoBeltCommand m_autoBeltCommand = new AutoBeltCommand(m_ballSubsystem);
   public static SequentialDriveExampleCommand m_DriveExampleCommand = new SequentialDriveExampleCommand(m_robotDrive, m_limelight);
@@ -63,9 +67,14 @@ public class RobotContainer {
 
     m_robotDrive.setDefaultCommand(
         new RunCommand(() -> m_robotDrive.tankDrive(-driverXBox.getRawAxis(1), -driverXBox.getRawAxis(5)), m_robotDrive));
+  }
+        
     // ^ Setting the Default Command to m_robotDrive, meaning it will drive as long
     // as nothing else is scheduled
-  }
+
+    //m_climberSubsystem.setDefaultCommand(
+        //new RunCommand(() -> m_climberSubsystem.setClimberSpeed(-manipulatorXBox.getRawAxis(0), -manipulatorXBox.getRawAxis(1)), m_climberSubsystem));
+  //}
 
   private void configureButtonBindings() {
 
@@ -80,9 +89,9 @@ public class RobotContainer {
 
     JoystickButton limelightTurn = new JoystickButton(driverXBox, A_BUTTON_XBOX);
     limelightTurn.whileHeld(new LimelightAutoTrackCommand());
+
 /*
-    Joystic\
-    kButton driveDistanceCommandButton = new JoystickButton(driverXBox, X_BUTTON_XBOX);
+    JoystickButton driveDistanceCommandButton = new JoystickButton(driverXBox, X_BUTTON_XBOX);
     driveDistanceCommandButton.whenPressed(new DriveDistanceCommand(60, 1, m_robotDrive));
 */
     //JoystickButton turnInplaceCommandButton = new JoystickButton(driverXBox, Y_BUTTON_XBOX);
@@ -108,6 +117,11 @@ public class RobotContainer {
     
     JoystickButton ThrowUpButton = new JoystickButton(manipulatorXBox, START_ARROW);
     ThrowUpButton.whileHeld(new ThrowUpCommand(m_ballSubsystem));
+
+    JoystickButton BeltOneBall = new JoystickButton(manipulatorXBox, BACK_ARROW);
+    BeltOneBall.whenPressed(new BallBeltEncoderCommand(m_ballSubsystem));
+
+    //JoystickButton shootBalls = new JoystickButton(manipulatorXBox, )
 
   }
 }
