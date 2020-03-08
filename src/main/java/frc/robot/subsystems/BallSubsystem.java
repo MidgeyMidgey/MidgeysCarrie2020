@@ -80,6 +80,14 @@ public class BallSubsystem extends SubsystemBase {
     index.set(ControlMode.PercentOutput, speed);
   }
 
+  public boolean indexON(){
+    if (index.getMotorOutputPercent() > 0){
+      return true;
+    } else{
+        return false;
+    }
+  }
+
   public void indexOneBallMovement(double speed){
     double initial = indexEncoder.get();
     double target = initial + 1024; // half rotation; move to constants

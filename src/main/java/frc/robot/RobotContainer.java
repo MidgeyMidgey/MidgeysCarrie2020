@@ -38,15 +38,19 @@ import frc.robot.subsystems.BallSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
+import frc.robot.subsystems.NavxSubsystem;
 
 public class RobotContainer {
   public static XboxController driverXBox = new XboxController(1);
   public static XboxController manipulatorXBox = new XboxController(2);
+
+  public static DriveSubsystem m_robotDrive = new DriveSubsystem();
   public static LimelightSubsystem m_limelight = new LimelightSubsystem();
-  public final static DriveSubsystem m_robotDrive = new DriveSubsystem();
   public static BallSubsystem m_ballSubsystem = new BallSubsystem();
   public static ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
+  public static NavxSubsystem m_navxSubsystem = new NavxSubsystem();
   // ^ This is where we make our subsystems into instances!
+
   public static AutoBeltCommand m_autoBeltCommand = new AutoBeltCommand(m_ballSubsystem);
   public static SequentialDriveExampleCommand m_DriveExampleCommand = new SequentialDriveExampleCommand(m_robotDrive, m_limelight);
 
@@ -60,7 +64,6 @@ public class RobotContainer {
   private static final int START_ARROW = 8;
   private static final int JOYSTICK_LEFT_CLICK = 9;
   private static final int JOYSTICK_RIGHT_CLICK = 10;
-
 
   public RobotContainer() {
     configureButtonBindings();
@@ -90,10 +93,10 @@ public class RobotContainer {
     JoystickButton limelightTurn = new JoystickButton(driverXBox, A_BUTTON_XBOX);
     limelightTurn.whileHeld(new LimelightAutoTrackCommand());
 
-/*
-    JoystickButton driveDistanceCommandButton = new JoystickButton(driverXBox, X_BUTTON_XBOX);
-    driveDistanceCommandButton.whenPressed(new DriveDistanceCommand(60, 1, m_robotDrive));
-*/
+
+    //JoystickButton driveDistanceCommandButton = new JoystickButton(driverXBox, X_BUTTON_XBOX);
+    //driveDistanceCommandButton.whenPressed(new DriveDistanceCommand(60, 1, m_robotDrive));
+
     //JoystickButton turnInplaceCommandButton = new JoystickButton(driverXBox, Y_BUTTON_XBOX);
     //turnInplaceCommandButton.whenPressed(new TurnInplaceCommand(45, .25, m_robotDrive));
   
