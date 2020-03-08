@@ -40,7 +40,7 @@ public class LimelightDistanceCommand extends CommandBase {
     double speed = 0.0;
     double heading = 0.0;
     if (m_limelight.hasTarget()){
-        speed = (TARGET_AREA - m_limelight.getArea()) * 4.00;
+        speed = (TARGET_AREA - m_limelight.getArea()) * 0.50;
         if(speed > 0){
           speed += minValue;
         } else if (speed < 0){
@@ -60,7 +60,7 @@ public class LimelightDistanceCommand extends CommandBase {
         SmartDashboard.putNumber("Heading", heading);
         SmartDashboard.putNumber("Speed", speed);
     }
-    m_robotDrive.arcadeDrive(speed, heading);    
+    m_robotDrive.arcadeDrive(speed, -heading);    
   }
 
   // new school tank style  

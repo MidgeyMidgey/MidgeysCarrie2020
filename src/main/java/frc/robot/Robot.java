@@ -53,19 +53,15 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("limelight has target", RobotContainer.m_limelight.hasTarget());
     //SmartDashboard.putNumber("Limelight tx", RobotContainer.m_limelight.getX());
     //SmartDashboard.putNumber("Limelight ty", RobotContainer.m_limelight.getY());
-    //SmartDashboard.putNumber("Limelight ta", RobotContainer.m_limelight.getArea());
-    
+    SmartDashboard.putNumber("Limelight ta", RobotContainer.m_limelight.getArea());
     SmartDashboard.putNumber("Flywheel Revolutions per min", (flyWheelRPM));
     //SmartDashboard.putNumber("Flywheel distance", RobotContainer.m_ballSubsystem.flywheelEncoder.getDistance());
-
     SmartDashboard.putBoolean("Intake On", RobotContainer.m_ballSubsystem.intakeON());
-
     SmartDashboard.putBoolean("Intake got ball", RobotContainer.m_ballSubsystem.intakeHasBall());
     SmartDashboard.putBoolean("Index got ball", RobotContainer.m_ballSubsystem.indexHasBall());
-
     SmartDashboard.putNumber("Belt Encoder", RobotContainer.m_ballSubsystem.getBallBeltEncoder());
-
-    SmartDashboard.putBoolean("Flywheel up to speed", RobotContainer.m_ballSubsystem.flywheelUpToSpeed()); 
+    SmartDashboard.putBoolean("Flywheel up to speed", RobotContainer.m_ballSubsystem.flywheelUpToSpeed());
+    SmartDashboard.putBoolean("Index On", RobotContainer.m_ballSubsystem.indexON());
   }
 
   @Override
