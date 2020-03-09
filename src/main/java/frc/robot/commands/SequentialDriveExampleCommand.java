@@ -27,7 +27,7 @@ public class SequentialDriveExampleCommand extends SequentialCommandGroup {
       new DriveDistanceCommand(FORWARD_DISTANCE, FORWARD_SPEED,  drive),
       new DriveDistanceCommand(FORWARD_DISTANCE, -FORWARD_SPEED,  drive),
       new TurnInplaceCommand(TURN_DISTANCE, FORWARD_SPEED,  drive),
-      new LimelightAutoTrackCommand()
+      new LimelightAutoTrackCommand(drive)
 		  );
     }
 

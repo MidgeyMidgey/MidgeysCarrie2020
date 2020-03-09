@@ -29,9 +29,11 @@ import frc.robot.commands.OneIndexBallCommand;
 //import frc.robot.commands.OneIndexBallCommand;
 import frc.robot.commands.DriveDistanceCommand;
 import frc.robot.commands.FlywheelStartCommand;
+import frc.robot.commands.GetBall;
 //import frc.robot.commands.FlywheelStartCommand;
 import frc.robot.commands.IRSensorCommand;
 import frc.robot.commands.TurnInplaceCommand;
+import frc.robot.commands.WinchCommand;
 import frc.robot.commands.SequentialDriveExampleCommand;
 import frc.robot.commands.ThrowUpCommand;
 import frc.robot.subsystems.BallSubsystem;
@@ -47,7 +49,7 @@ public class RobotContainer {
   public static DriveSubsystem m_robotDrive = new DriveSubsystem();
   public static LimelightSubsystem m_limelight = new LimelightSubsystem();
   public static BallSubsystem m_ballSubsystem = new BallSubsystem();
-  public static ClimberSubsystem m_climberSubsystem = new ClimberSubsystem();
+  public ClimberSubsystem m_climberSubsystem;
   public static NavxSubsystem m_navxSubsystem = new NavxSubsystem();
   // ^ This is where we make our subsystems into instances!
 
@@ -66,6 +68,7 @@ public class RobotContainer {
   private static final int JOYSTICK_RIGHT_CLICK = 10;
 
   public RobotContainer() {
+    m_climberSubsystem = new ClimberSubsystem(manipulatorXBox);
     configureButtonBindings();
 
     m_robotDrive.setDefaultCommand(
@@ -76,7 +79,7 @@ public class RobotContainer {
     // as nothing else is scheduled
 
     //m_climberSubsystem.setDefaultCommand(
-        //new RunCommand(() -> m_climberSubsystem.setClimberSpeed(-manipulatorXBox.getRawAxis(0), -manipulatorXBox.getRawAxis(1)), m_climberSubsystem));
+        //new RunCommand(() -> m_climberSubsystem.setClimberSpeed(-manipulatorXBox.getRawAxis(0)));
   //}
 
   private void configureButtonBindings() {
@@ -91,7 +94,7 @@ public class RobotContainer {
     autoDistanceButton.whileHeld(new LimelightDistanceCommand(m_limelight, m_robotDrive));
 
     JoystickButton limelightTurn = new JoystickButton(driverXBox, A_BUTTON_XBOX);
-    limelightTurn.whileHeld(new LimelightAutoTrackCommand());
+    limelightTurn.whileHeld(new GetBall(m_limelight, m_robotDrive));
 
 
     //JoystickButton driveDistanceCommandButton = new JoystickButton(driverXBox, X_BUTTON_XBOX);
@@ -125,6 +128,9 @@ public class RobotContainer {
     BeltOneBall.whenPressed(new BallBeltEncoderCommand(m_ballSubsystem));
 
     //JoystickButton shootBalls = new JoystickButton(manipulatorXBox, )
+
+    JoystickButton WinchGoButton = new JoystickButton(driverXBox, B_BUTTON_XBOX);
+    WinchGoButton.whileHeld(new WinchCommand(m_climberSubsystem));
 
   }
 }

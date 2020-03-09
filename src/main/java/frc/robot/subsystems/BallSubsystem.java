@@ -57,11 +57,7 @@ public class BallSubsystem extends SubsystemBase {
   }
 
   public boolean intakeON(){
-    if(ballCollect.getMotorOutputPercent() > 0){
-      return true;
-    } else{
-      return false;
-    }
+    return ballCollect.getMotorOutputPercent() > 0;
   }
 
   public void setBallBeltSpeeds(double speed){
@@ -103,6 +99,7 @@ public class BallSubsystem extends SubsystemBase {
   public boolean indexHasBall(){
     return !indexSensor.get();
   }
+
 
   @Override
   public void periodic() {

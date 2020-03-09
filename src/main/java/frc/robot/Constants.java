@@ -8,7 +8,7 @@
 package frc.robot;
 
 public final class Constants {
-    public static double k = .95;
+    public static double k = .60;
     public static final double K_TURN = 0.25;
     public static final double MAX_SPEED = 0.25;
     public static final double BALL_SYSTEM_SPEED = .75;
@@ -24,7 +24,7 @@ public final class Constants {
     public static final int CAMERA_IMG_HEIGHT = 240;
     public static final double BALL_THROW_UP_SPEED = -0.50;
     public static final double AUTO_BELT_SPEED = 0.25;
-    public static final double CLIMBER_HOOK_SPEED = 0.3;
+    public static final double CLIMBER_HOOK_SPEED = 1.00;
     public static final double CLIMBER_WINCH_SPEED = 0.3;
 
 }

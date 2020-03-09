@@ -13,6 +13,8 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -24,40 +26,34 @@ public class ClimberSubsystem extends SubsystemBase {
 
   double hookSpeed;
   double winchSpeed;
+  XboxController m_manipulatorXBox;
 
-  public ClimberSubsystem() {
-
+  public ClimberSubsystem(XboxController manipulatorXBox) {
+    m_manipulatorXBox = manipulatorXBox;
+    register();
   }
 
   @Override
   public void periodic() {
-
+    hookSpeed = m_manipulatorXBox.getRawAxis(1);
+    setClimberSpeed(hookSpeed);
+    //SmartDashboard.putNumber("Hook Speed", hookSpeed);
   }
 
-  public void setClimberSpeed(double hSpeed, double wSpeed){
+  public void setClimberSpeed(double hSpeed){
     if(hSpeed > 0.80){
-      hookSpeed = Constants.CLIMBER_HOOK_SPEED;
+      hookSpeed = -Constants.CLIMBER_HOOK_SPEED;
     }
     else if(hSpeed < -0.80){
-      hookSpeed = -Constants.CLIMBER_HOOK_SPEED;
+      hookSpeed = Constants.CLIMBER_HOOK_SPEED;
     }
     else{
       hookSpeed = 0.0;
     }
     climberHook.set(ControlMode.PercentOutput, hookSpeed);
-
-    if(wSpeed>0.80){
-      winchSpeed = Constants.CLIMBER_WINCH_SPEED;
-    }
-    else{
-      winchSpeed = 0.0;
-    }
-    climberWinch.set(ControlMode.PercentOutput, winchSpeed);
   }
 
-  /*
-  public void climberCommand(){
-
+  public void setWinchSpeed(double wSpeed){
+    climberWinch.set(ControlMode.PercentOutput, wSpeed);
   }
-  */
 }
