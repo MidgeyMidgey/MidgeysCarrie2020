@@ -37,26 +37,23 @@ public class NavxSubsystem extends SubsystemBase {
       return;
     }
 
-    SmartDashboard.putBoolean("navX_isConnected", m_navx.isConnected());
-    SmartDashboard.putBoolean("navX_isCalibrating", m_navx.isCalibrating());
-
     // Compatible with wpilibj Gyro Class
     SmartDashboard.putNumber("navX_angle", m_navx.getAngle());
-    SmartDashboard.putNumber("navX_yaw_DPS", m_navx.getRate());
+    //SmartDashboard.putNumber("navX_yaw_DPS", m_navx.getRate());
 
     // procesed 6-axis data
     SmartDashboard.putNumber("navX_yaw", m_navx.getYaw());
-    SmartDashboard.putNumber("navX_pitch", m_navx.getPitch());
-    SmartDashboard.putNumber("navX_roll", m_navx.getRoll());
 
     // Acceleration data
     SmartDashboard.putNumber("navX_AccelX", m_navx.getWorldLinearAccelX());
     SmartDashboard.putNumber("navX_AccelY", m_navx.getWorldLinearAccelY());
 
     // Approximate integral & 2nd integral
+    /*
     SmartDashboard.putNumber("navX_VelocityX", m_navx.getVelocityX());
     SmartDashboard.putNumber("navx_VelocityY", m_navx.getVelocityY());
     SmartDashboard.putNumber("navx_DisplacementX", m_navx.getDisplacementX());
     SmartDashboard.putNumber("navx_DisplacementY", m_navx.getDisplacementY());
+    */
   }
 }

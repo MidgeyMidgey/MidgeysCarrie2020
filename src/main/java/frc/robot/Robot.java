@@ -59,7 +59,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putBoolean("Intake On", RobotContainer.m_ballSubsystem.intakeON());
     SmartDashboard.putBoolean("Intake got ball", RobotContainer.m_ballSubsystem.intakeHasBall());
     SmartDashboard.putBoolean("Index got ball", RobotContainer.m_ballSubsystem.indexHasBall());
-    SmartDashboard.putNumber("Belt Encoder", RobotContainer.m_ballSubsystem.getBallBeltEncoder());
+    //SmartDashboard.putNumber("Belt Encoder", RobotContainer.m_ballSubsystem.getBallBeltEncoder());
     SmartDashboard.putBoolean("Flywheel up to speed", RobotContainer.m_ballSubsystem.flywheelUpToSpeed());
     SmartDashboard.putBoolean("Index On", RobotContainer.m_ballSubsystem.indexON());
   }

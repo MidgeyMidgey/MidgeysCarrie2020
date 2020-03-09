@@ -65,7 +65,7 @@ public class LimelightDistanceCommand extends CommandBase {
 
   // new school tank style  
   public void execute_new() {
-    final double K_H = 0.1;
+    final double K_H = 0.05;
     final double K_A = 0.1;
     final double minValue = 0.01; //0.001
     double speed = 0.0;
@@ -82,8 +82,8 @@ public class LimelightDistanceCommand extends CommandBase {
 	    speed = area_diff * K_A;
     }
 
-    double left_speed = speed - heading;
-    double right_speed = speed + heading;
+    double left_speed = speed + heading;
+    double right_speed = speed - heading;
     
     // If either > 1 rescale to keep heading
     double m = Math.max(Math.abs(left_speed), Math.abs(right_speed));

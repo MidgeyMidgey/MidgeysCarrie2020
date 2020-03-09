@@ -13,6 +13,7 @@ import edu.wpi.first.wpiutil.math.MathUtil;
 import frc.robot.Constants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.LimelightSubsystem;
 
 public class LimelightAutoTrackCommand extends CommandBase {
@@ -20,8 +21,10 @@ public class LimelightAutoTrackCommand extends CommandBase {
   double leftSpeed = 0.0;
   double rightSpeed = 0.0;
 
-  public LimelightAutoTrackCommand() {
-  
+  private DriveSubsystem m_robotDrive;
+  public LimelightAutoTrackCommand(DriveSubsystem robotDrive) {
+    m_robotDrive = robotDrive;
+    addRequirements(m_robotDrive);
   }
 
   @Override
@@ -41,8 +44,7 @@ public class LimelightAutoTrackCommand extends CommandBase {
         leftSpeed = speed;
         rightSpeed = -speed;
     }
-    SmartDashboard.putNumber("Left Speed", leftSpeed);    
-    SmartDashboard.putNumber("Right Speed", rightSpeed);    
+    m_robotDrive.tankDrive(leftSpeed, rightSpeed);    
   }
 
   @Override
