@@ -7,24 +7,15 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.commands.AutoBeltCommand;
 import frc.robot.commands.BallBeltEncoderCommand;
 import frc.robot.commands.BallEjectCommand;
 import frc.robot.commands.BallIntakeCommand;
 import frc.robot.commands.BeltOnlyTesterCommand;
-import frc.robot.commands.LimelightAutoTrackCommand;
 import frc.robot.commands.LimelightDistanceCommand;
-import frc.robot.commands.OneBallBeltCommand;
 import frc.robot.commands.OneIndexBallCommand;
 //import frc.robot.commands.OneIndexBallCommand;
 import frc.robot.commands.DriveDistanceCommand;
@@ -104,7 +95,7 @@ public class RobotContainer {
     //turnInplaceCommandButton.whenPressed(new TurnInplaceCommand(45, .25, m_robotDrive));
   
     JoystickButton flywheelStarButton = new JoystickButton(manipulatorXBox, X_BUTTON_XBOX);
-    flywheelStarButton.toggleWhenPressed(new FlywheelStartCommand(m_ballSubsystem));
+    flywheelStarButton.toggleWhenPressed(new FlywheelStartCommand(m_ballSubsystem, 1000));
 
     JoystickButton oneIndexBallCommandButton = new JoystickButton(manipulatorXBox, A_BUTTON_XBOX);
     oneIndexBallCommandButton.whileHeld(new OneIndexBallCommand(m_ballSubsystem));
@@ -131,6 +122,5 @@ public class RobotContainer {
 
     JoystickButton WinchGoButton = new JoystickButton(driverXBox, B_BUTTON_XBOX);
     WinchGoButton.whileHeld(new WinchCommand(m_climberSubsystem));
-
   }
 }
