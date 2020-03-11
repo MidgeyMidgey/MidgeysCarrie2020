@@ -43,7 +43,7 @@ public class BallSubsystem extends SubsystemBase {
   public Encoder indexEncoder = new Encoder(indexA, indexB);
   
   //public static int powerCellsHeld = 3;
-
+ 
   public BallSubsystem() {
     flywheelEncoder.reset();
   }
@@ -70,6 +70,10 @@ public class BallSubsystem extends SubsystemBase {
 
   public boolean flywheelUpToSpeed(){
     return (flywheelEncoder.getRate()/2048)*60 > 6500;
+  }
+
+  public double getFlywheelRPM(){
+    return flywheelEncoder.getRate()/2048 * 60;
   }
 
   public void setIndexSpeed(double speed){
